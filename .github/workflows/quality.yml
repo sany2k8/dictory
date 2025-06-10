@@ -21,4 +21,4 @@ jobs:
       - name: Install ruff
         run: uv pip install ruff
       - name: Run ruff (formatting, lint, security)
-        run: ruff check .
+        run: .venv/bin/ruff check .
