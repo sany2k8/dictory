@@ -1,6 +1,26 @@
 import pytest
 from types import SimpleNamespace
-from dict_utils import *
+from dict_utils.core import (
+    safely_deep_get,
+    has_nested,
+    get_all_values_for_key,
+    safely_deep_update,
+    delete_nested,
+    flatten_dict,
+    unflatten_dict,
+    compact_dict,
+    filter_dict,
+    invert_dict,
+    merge_dicts,
+    deep_update,
+    dict_diff,
+    dict_depth,
+    dict_to_object,
+    object_to_dict,
+    nested_keys,
+    replace_keys,
+    map_dict_values,
+)
 
 
 @pytest.mark.parametrize(
