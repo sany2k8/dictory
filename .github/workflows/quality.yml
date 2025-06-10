@@ -1,0 +1,22 @@
+name: Push to repo
+on: [push]
+
+jobs:
+  code-quality:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.13.3]
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install uv
+        run: pip install uv
+      - name: Install ruff
+        run: uv pip install ruff
+      - name: Run ruff (formatting, lint, security)
+        run: ruff check .
