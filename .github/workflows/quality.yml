@@ -16,6 +16,8 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install uv
         run: pip install uv
+      - name: Create virtual environment
+        run: uv venv
       - name: Install ruff
         run: uv pip install ruff
       - name: Run ruff (formatting, lint, security)
