@@ -26,4 +26,4 @@ jobs:
         env:
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
         run: |
-          uv publish --version ${{ github.event.inputs.version }} --token $PYPI_TOKEN --publish-url https://upload.pypi.org/legacy/
+          uv publish --token $PYPI_TOKEN --publish-url https://upload.pypi.org/legacy/
