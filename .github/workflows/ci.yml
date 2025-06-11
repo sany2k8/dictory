@@ -1,7 +1,7 @@
 name: Check and Lint
 
 env:
-  CODE_DIR: dictory/
+  CODE_DIR: dict_utils/
 
 on:
   pull_request:
