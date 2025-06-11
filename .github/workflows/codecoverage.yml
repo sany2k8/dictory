@@ -1,9 +1,6 @@
 name: Python Tests and Coverage
 
-on:
-  pull_request:
-    branches: [main]
-
+on: [push]
 jobs:
   test:
     strategy:

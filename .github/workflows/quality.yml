@@ -1,4 +1,4 @@
-name: Push to repo
+name: Check Code Quality
 on: [push]
 
 jobs:
