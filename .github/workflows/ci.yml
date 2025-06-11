@@ -1,7 +1,8 @@
 name: Check and Lint
 
 env:
-  CODE_DIR: dictory/
+  CODE_DIR: dict_utils/
+  PYTHON_VERSION: 3.13.3
 
 on:
   pull_request:
@@ -19,7 +20,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.13.3
+          python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Install uv
         run: pip install uv
@@ -39,7 +40,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.13.3
+          python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Install uv
         run: pip install uv
@@ -59,7 +60,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.13.9
+          python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Install uv
         run: pip install uv
