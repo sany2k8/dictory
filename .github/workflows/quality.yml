@@ -18,7 +18,7 @@ jobs:
         run: pip install uv
       - name: Create virtual environment
         run: uv venv
-      - name: Install ruff
-        run: uv pip install ruff
+      - name: Sync dependencies
+        run: uv sync
       - name: Run ruff (formatting, lint, security)
         run: .venv/bin/ruff check .
