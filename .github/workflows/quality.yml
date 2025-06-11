@@ -21,4 +21,4 @@ jobs:
       - name: Sync dependencies
         run: uv sync
       - name: Run ruff (formatting, lint, security)
-        run: .venv/bin/ruff check .
+        run: uv run ruff .

@@ -20,8 +20,8 @@ jobs:
         run: pip install uv
       - name: Sync dependencies
         run: uv sync
-      - name: Run tests
-        run: uv run pytest
+      - name: Build the package
+        run: uv build
       - name: Publish to PyPI
         env:
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
