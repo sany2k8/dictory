@@ -53,13 +53,13 @@ merged = dict_utils.merge_dicts(d1, d2)  # {'a': 1, 'b': 3, 'c': 4}
 Install developer dependencies:
 
 ```bash
-pip install -r requirements-dev.txt
+uv sync --extra dev
 ```
 
 Run tests:
 
 ```bash
-pytest
+uv run pytest
 ```
 
 ## License
