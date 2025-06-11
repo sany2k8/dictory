@@ -1,9 +1,12 @@
-name: Release
+name: Release to PyPI
 
 on:
   push:
-    tags:
-      - "v*.*.*"
+    branches: [main]
+  # Trigger on manual dispatch
+  # This allows you to manually trigger the workflow from the GitHub Actions UI
+  # Useful for releasing versions without a new commit
+  workflow_dispatch:
 
 jobs:
   release:
@@ -19,4 +22,8 @@ jobs:
         run: uv pip install -r requirements.txt
       - name: Run tests
         run: uv pip install pytest && pytest
-      # Add your release steps here (e.g., build, publish, etc.)
+      - name: Publish to PyPI
+        env:
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        run: |
+          uv publish --token $PYPI_TOKEN --publish-url https://upload.pypi.org/legacy/
