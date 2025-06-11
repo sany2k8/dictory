@@ -1,6 +1,6 @@
 [project]
 name = "dictory"
-version = "0.1.1"
+version = "0.1.2"
 description = "A playful blend of dict and utility/library."
 readme = "README.md"
 requires-python = ">=3.13.3"
