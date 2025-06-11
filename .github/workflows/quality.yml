@@ -19,6 +19,6 @@ jobs:
       - name: Create virtual environment
         run: uv venv
       - name: Sync dependencies
-        run: uv sync
+        run: uv sync --extra dev
       - name: Run ruff (formatting, lint, security)
         run: uv run ruff .

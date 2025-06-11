@@ -19,7 +19,7 @@ jobs:
       - name: Create virtual environment
         run: uv venv
       - name: Sync dependencies
-        run: uv sync
+        run: uv sync --extra dev
       - name: Run tests and coverage
         run: |
           uv run pytest --cov=. --cov-report=xml
