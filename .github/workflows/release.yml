@@ -2,11 +2,6 @@ name: Release to PyPI
 
 on:
   workflow_dispatch:
-    inputs:
-      version:
-        description: Version number to create tag and release? (e.g. use semantic version format like 'v0.1.0')
-        required: true
-        type: string
 
 jobs:
   release:
@@ -21,9 +16,9 @@ jobs:
       - name: Sync dependencies
         run: uv sync --extra dev
       - name: Build the package
-        run: uv build
+        run: uv build --upgrade
       - name: Publish to PyPI
         env:
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
         run: |
-          uv publish --version ${{ github.event.inputs.version }} --token $PYPI_TOKEN --publish-url https://upload.pypi.org/legacy/
+          uv publish --token $PYPI_TOKEN --publish-url https://upload.pypi.org/legacy/
