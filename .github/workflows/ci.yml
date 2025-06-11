@@ -1,0 +1,71 @@
+name: Check and Lint
+
+env:
+  CODE_DIR: dictory/
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [dev, stage]
+
+jobs:
+  python-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.13.3
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Sync dependencies (with dev)
+        run: uv sync --extra dev
+
+      - name: Lint
+        run: uv run ruff check $CODE_DIR
+
+  python-typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.13.3
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Sync dependencies (with dev)
+        run: uv sync --extra dev
+
+      - name: Type Check
+        run: uv run mypy $CODE_DIR
+
+  python-format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.13.9
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Sync dependencies (with dev)
+        run: uv sync --extra dev
+
+      - name: Check Formatting
+        run: uv run ruff format --check $CODE_DIR
