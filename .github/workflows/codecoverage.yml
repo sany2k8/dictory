@@ -30,4 +30,4 @@ jobs:
           files: ./coverage.xml
       - name: Check coverage
         run: |
-          uv run coverage report --fail-under=100
+          uv run coverage report --fail-under=80

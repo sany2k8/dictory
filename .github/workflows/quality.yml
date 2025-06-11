@@ -21,4 +21,4 @@ jobs:
       - name: Sync dependencies
         run: uv sync --extra dev
       - name: Run ruff (formatting, lint, security)
-        run: uv run ruff .
+        run: uv run ruff

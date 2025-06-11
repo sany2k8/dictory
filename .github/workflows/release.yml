@@ -1,12 +1,12 @@
 name: Release to PyPI
 
 on:
-  push:
-    branches: [main]
-  # Trigger on manual dispatch
-  # This allows you to manually trigger the workflow from the GitHub Actions UI
-  # Useful for releasing versions without a new commit
   workflow_dispatch:
+    inputs:
+      version:
+        description: Version number to create tag and release? (e.g. use semantic version format like 'v0.1.0')
+        required: true
+        type: string
 
 jobs:
   release:
@@ -26,4 +26,4 @@ jobs:
         env:
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
         run: |
-          uv publish --token $PYPI_TOKEN --publish-url https://upload.pypi.org/legacy/
+          uv publish --version ${{ github.event.inputs.version }} --token $PYPI_TOKEN --publish-url https://upload.pypi.org/legacy/
