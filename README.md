@@ -56,7 +56,6 @@ nested = {"a": {"b": {"c": 123}}}
 dict_utils.safely_deep_update(nested, {"a": {"b": {"d": 456}}})
 # nested is now {"a": {"b": {"c": 123, "d": 456}}}
 
-
 # Example: Delete a nested key
 nested = {"a": {"b": {"c": 123}}}
 dict_utils.delete_nested(nested, "a.b.c")
