@@ -88,6 +88,8 @@ name = "dictory"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "mypy" },
+    { name = "pre-commit" },
     { name = "pytest" },
 ]
 
@@ -104,7 +106,9 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "black", marker = "extra == 'dev'" },
+    { name = "mypy", specifier = ">=1.16.0" },
     { name = "mypy", marker = "extra == 'dev'" },
+    { name = "pre-commit", specifier = ">=4.2.0" },
     { name = "pre-commit", marker = "extra == 'dev'", specifier = ">=4.2.0" },
     { name = "pytest", specifier = ">=8.4.0" },
     { name = "pytest", marker = "extra == 'dev'" },

@@ -4,6 +4,7 @@ from types import SimpleNamespace
 
 # Access utilities
 
+
 def safely_deep_get(
     dictionary: Union[dict, list, tuple], keys: str, default: Any = None
 ) -> Any:
@@ -62,6 +63,7 @@ def has_nested(d, path):
             return False
     return True
 
+
 def get_all_values_for_key(d: Union[dict, list], key: str) -> List[Any]:
     """
     Recursively retrieve all values associated with a specific key in a nested dictionary or list.
@@ -87,6 +89,7 @@ def get_all_values_for_key(d: Union[dict, list], key: str) -> List[Any]:
 
 # Update utilities
 
+
 def safely_deep_update(dictionary: dict, *path_values: tuple[str, Any]) -> dict:
     """
     Safely update a nested dictionary or list using a dot-separated key path.
@@ -105,17 +108,17 @@ def safely_deep_update(dictionary: dict, *path_values: tuple[str, Any]) -> dict:
             is_last = i == len(keys) - 1
             next_key = None if is_last else keys[i + 1]
             if key.isdigit():
-                key = int(key)
+                key_int = int(key)  # Use a new variable
                 if not isinstance(node, list):
                     raise TypeError("Expected list")
-                while len(node) <= key:
+                while len(node) <= key_int:
                     node.append({} if not is_last and not next_key.isdigit() else [])
                 if is_last:
-                    node[key] = value
+                    node[key_int] = value
                 else:
-                    if not isinstance(node[key], (dict, list)):
-                        node[key] = {} if not next_key.isdigit() else []
-                    node = node[key]
+                    if not isinstance(node[key_int], (dict, list)):
+                        node[key_int] = {} if not next_key.isdigit() else []
+                    node = node[key_int]
             else:
                 if not isinstance(node, dict):
                     raise TypeError("Expected dict")
@@ -123,7 +126,11 @@ def safely_deep_update(dictionary: dict, *path_values: tuple[str, Any]) -> dict:
                     node[key] = value
                 else:
                     if key not in node or not isinstance(node[key], (dict, list)):
-                        node[key] = {} if not next_key.isdigit() else []
+                        node[key] = (
+                            {}
+                            if next_key is not None and not next_key.isdigit()
+                            else []
+                        )
                     node = node[key]
     return dictionary
 
@@ -188,7 +195,7 @@ def unflatten_dict(d: dict, sep: str = ".") -> dict:
     Returns:
         dict: The unflattened dictionary.
     """
-    result = {}
+    result: dict[str, Any] = {}
     for key, value in d.items():
         keys = key.split(sep)
         ref = result
@@ -260,6 +267,7 @@ def hashable(v: Any) -> bool:
 
 
 # Merge utilities
+
 
 def merge_dicts(d1: dict, d2: dict) -> dict:
     """
@@ -337,6 +345,7 @@ def dict_depth(d: dict) -> int:
 
 
 # Conversion
+
 
 def dict_to_object(d: dict) -> SimpleNamespace:
     """
