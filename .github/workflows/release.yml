@@ -2,11 +2,6 @@ name: Release to PyPI
 
 on:
   workflow_dispatch:
-    inputs:
-      version:
-        description: Version number to create tag and release? (e.g. use semantic version format like 'v0.1.0')
-        required: true
-        type: string
 
 jobs:
   release:
